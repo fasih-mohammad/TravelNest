@@ -125,3 +125,81 @@ footer {
 #map {
     height: 180px;
 }
+
+.logimg{
+    width: 2rem;
+}
+.signimg{
+    width: 2rem;
+}
+.short{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+#search-btn{
+    display: none;
+}
+
+@media screen and (max-width:768px){
+    .explore , .logint , .signt{
+        display: none !important;
+    }
+    .tax{
+        width:  50%;
+        margin: 0 20% 1rem  20%;
+    }
+    .tax-box{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 5rem;
+    }
+}
+
+@media screen and (min-width:768px){
+    .logimg , .signimg{
+        display: none;
+    }
+}    
+
+@media screen and (max-width:545px){
+    #search{
+        width: 9rem;
+        padding: 0.5rem 2.7rem 0.5rem 2.7rem;
+    }
+    #or-search{
+        display: none;
+    }
+    #search-btn{
+        display: flex;
+        width: 2.8rem;
+        align-items: center;
+        padding-right: 1rem;
+        /* justify-content: center; */
+        border-radius: 50%;
+    }
+}
+
+@media screen and (max-width:576px){
+    .listing-card{
+        margin: 2rem;
+    }
+}
+
+@media screen and (max-width:992px){
+    .scrolling-wrapper {
+        /* overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+
+        .filter {
+            display: inline-block;
+        }*/
+        -webkit-overflow-scrolling: touch;
+    } 
+}
