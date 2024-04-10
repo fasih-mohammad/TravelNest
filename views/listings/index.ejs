@@ -3,20 +3,23 @@
     <style>
         #filters {
             display: flex;
-            flex-wrap: wrap;
             flex-direction: row;
             justify-content: center;
             align-items: center;
             gap: 1rem;
             margin-bottom: 0.5rem;
+
         }
 
         .filter {
+            display: inline-block;
             text-align: center;
             margin-right: 2rem;
             margin-top: 2rem;
             opacity: 0.7;
         }
+
+
 
         .filter:hover {
             opacity: 1;
@@ -33,15 +36,41 @@
 
         .tax {
             border: 1px solid rgb(227, 209, 209);
-            height: 3rem;
+            /* height: 3rem; */
+            width: 18rem;
+            margin: 1rem auto;
             border-radius: 1rem;
             padding: 1rem;
-            display: flex;
-            align-items: center;
-            margin-left: 5.5rem;
         }
 
-        
+        .tax-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .switch {
+            font-size: 1.2rem;
+        }
+
+        @media screen and (max-width:991px) {
+            .scrolling-wrapper {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                .filter {
+                    flex: 0 0 auto;
+                }
+            }
+        }
+
+        @media screen and (max-width:400) {
+            .list-card{
+                padding-right: 0 !important;
+                padding-left: 0 !important;
+            }
+            
+        }
     </style>
 
     <body>
@@ -78,17 +107,16 @@
                 <div><i class="fa-solid fa-cow"></i></div>
                 <p>Farms</p>
             </div>
-
-            <div class="tax">
-                <div class="form-check-reverse form-switch tax-box">
-
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Display Total After Taxes</label>
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                </div>
+        </div>
+        <div class="tax">
+            <div class="form-check-reverse form-switch tax-box">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Display Total After Taxes</label>
+                <input class="form-check-input switch" type="checkbox" role="switch" id="flexSwitchCheckDefault">
             </div>
         </div>
 
-        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+
+        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 list-card">
             <% for(let listing of allListings){ %>
                 <a href="/listings/<%= listing._id %>" class="listing-link">
                     <div class="card col listing-card">

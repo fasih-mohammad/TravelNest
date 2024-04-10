@@ -127,10 +127,10 @@ footer {
 }
 
 .logimg{
-    width: 2rem;
+    width: 1.5rem;
 }
 .signimg{
-    width: 2rem;
+    width: 1.5rem;
 }
 .short{
     display: flex;
@@ -170,6 +170,7 @@ footer {
 @media screen and (max-width:545px){
     #search{
         width: 9rem;
+        height: 2rem;
         padding: 0.5rem 2.7rem 0.5rem 2.7rem;
     }
     #or-search{
@@ -177,29 +178,36 @@ footer {
     }
     #search-btn{
         display: flex;
-        width: 2.8rem;
+        width: 2rem;
+        height: 2rem;
         align-items: center;
-        padding-right: 1rem;
-        /* justify-content: center; */
+        justify-content: center;
         border-radius: 50%;
     }
+   .container{
+    --bs-gutter-x: 0 !important;
+   }
 }
 
 @media screen and (max-width:576px){
     .listing-card{
         margin: 2rem;
     }
+    .tax{
+        width: 80%;
+
+    }
+    .tax-box{
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        margin: 0  auto;
+    }
+    .tax-box label{
+        font-size: .9rem !important;
+    }
 }
 
-@media screen and (max-width:992px){
-    .scrolling-wrapper {
-        /* overflow-x: scroll;
-        overflow-y: hidden;
-        white-space: nowrap;
 
-        .filter {
-            display: inline-block;
-        }*/
-        -webkit-overflow-scrolling: touch;
-    } 
-}
+
