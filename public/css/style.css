@@ -188,6 +188,17 @@ footer {
    .container{
     --bs-gutter-x: 0 !important;
    }
+   .logH{
+    margin-left: 29.333333% !important;
+    width: 50% !important;
+    height: 2rem;
+    /* font-size: 1.5rem; */
+   }
+   .alertF{
+    padding: 1rem !important;
+    margin-left: 12% !important;
+    width: 79% !important;
+   }
 }
 
 @media screen and (max-width:576px){
