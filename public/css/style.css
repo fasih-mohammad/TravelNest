@@ -82,6 +82,7 @@ footer {
 .listing-link {
     text-decoration: none;
     color: black;
+    
 }
 
 .card-img-overlay {
@@ -191,7 +192,7 @@ footer {
 
 @media screen and (max-width:576px){
     .listing-card{
-        margin: 2rem;
+        margin: 0 1.5rem 1rem 1.5rem;
     }
     .tax{
         width: 80%;
