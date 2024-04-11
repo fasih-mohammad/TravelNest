@@ -13,11 +13,12 @@
   .search-input {
     border-radius: 25px;
     padding: 0.5rem 3rem 0.5rem 3rem;
+    margin-left: 16rem ;
   }
 </style>
 
 <nav class="navbar navbar-expand-md  bg-body-light border-bottom sticky-top">
-  <div class="container-fluid">
+  <div class="container-fluid nav-div">
     <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
     <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"> 
         <span class="navbar-toggler-icon"></span>
@@ -31,8 +32,10 @@
       <form class="d-flex" role="search" method="get" action="/results">
         <input class="form-control me-2 search-input" type="text" name="search" id="search"
           placeholder="Search Destinations">
-          <button class="btn btn-search" type="submit" id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-        <button class="btn btn-search" type="submit" id="or-search"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;&nbsp;&nbsp;&nbsp;Search</button>
+        <button class="btn btn-search" type="submit" id="search-btn"><i
+            class="fa-solid fa-magnifying-glass"></i></button>
+        <button class="btn btn-search" type="submit" id="or-search"><i
+            class="fa-solid fa-magnifying-glass"></i>&nbsp;&nbsp;&nbsp;&nbsp;Search</button>
       </form>
     </div>
     <div class="navbar-nav ms-auto">
@@ -47,8 +50,17 @@
         </div>
         <% } %>
           <% if(currUser) {%>
-            <a class="nav-link" href="/listings/new">Airbnb your Home</a>
-            <a class="nav-link" href="/logout">Logout</a>
+            <!-- <img class="ham" src="images/more.png" alt=""> -->
+            <input id="menu-toggle" type="checkbox" />
+            <label class='menu-button-container' for="menu-toggle">
+              <div class='menu-button'></div>
+            </label>
+            <ul class="menu">
+              <li><a  href="/listings/new">Airbnb your Home</a></li>
+              <li><a  href="/logout">Logout</a></li>
+            </ul>
+            <a class="nav-link create" href="/listings/new">Airbnb your Home</a>
+            <a class="nav-link log-out" href="/logout">Logout</a>
             <% } %>
     </div>
     <!-- </div> -->
