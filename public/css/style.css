@@ -148,6 +148,11 @@ footer {
     display: none;
 }
 
+.hide-1 , .hide-2{
+    display: none;
+  }
+
+
 @media screen and (max-width:768px) {
 
     .explore,
@@ -251,6 +256,56 @@ footer {
     right: 0.3rem;
     bottom: 1.75rem;
    }
+   .hide-1{
+    display: block !important;
+    width: 100%;
+    height:  auto;
+}
+.hide-2{
+    display: block !important;
+    width: 80% !important;
+    margin-left: 1.3rem !important;
+}
+.hide-2 h1{
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+}
+.show-card{
+    width: 100% !important;
+    margin-left: 0rem !important;
+    padding-left: 0 !important;
+}
+.desc{
+    margin-left: 1.3rem;
+    letter-spacing: 0.1rem;
+}
+.show-1 , .show-2{
+    display: none !important;
+}
+.revs{
+    margin-left : 4rem !important ;
+}
+.revc{
+    margin-top: 0 !important;
+}
+.revt{
+    width: 91% !important;
+}
+.rev-author{
+    margin-top: 0.6rem !important;
+}
+.card-t{
+    margin-bottom: 0.5rem !important;
+}
+.stars{
+    margin-bottom: 0 !important;
+}
+.map-show{
+    margin-left: 4rem !important;
+}
+#map{
+    width: 246px;
+}
 }
 
 @media screen and (max-width:576px) {
@@ -274,9 +329,6 @@ footer {
     .tax-box label {
         font-size: .9rem !important;
     }
-}
-.ham{
-    display: none;
 }
 
 .menu {
