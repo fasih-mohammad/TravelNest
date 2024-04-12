@@ -16,3 +16,12 @@
       }, false);
     });
   })();
+
+var uploadField = document.getElementById("file");
+
+uploadField.onchange = function() {
+    if(this.files[0].size > 2200000){
+       alert("File is too big!");
+       this.value = "";
+    };
+};

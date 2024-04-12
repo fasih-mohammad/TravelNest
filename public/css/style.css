@@ -144,6 +144,8 @@ footer {
     gap: 1rem;
 }
 
+
+
 #search-btn {
     display: none;
 }
@@ -297,14 +299,32 @@ footer {
 .card-t{
     margin-bottom: 0.5rem !important;
 }
-.stars{
+/* .stars{
     margin-bottom: 0 !important;
-}
+} */
 .map-show{
     margin-left: 4rem !important;
 }
 #map{
     width: 246px;
+}
+.btns{
+    margin-bottom: 4rem;
+}
+.show-edit{
+    position: absolute !important;
+    right: 5rem;
+    width: 17% !important;
+    margin-left: 0.5rem !important;
+    left: 0 !important;
+}
+.show-del{
+    position: absolute !important;
+    right: 12rem;
+    /* width: 16% !important; */
+    /* margin-left: 5rem !important; */
+    /* left: 5rem !important; */
+
 }
 }
 
