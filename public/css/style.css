@@ -1,3 +1,7 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 body {
     font-family: "Plus Jakarta Sans", sans-serif !important;
     min-height: 100vh;
@@ -210,11 +214,6 @@ footer {
         right: 5.3rem;
         bottom: 1.45rem;
     }
-
-    .container {
-        --bs-gutter-x: 0 !important;
-    }
-
     .logH {
         margin-left: 29.333333% !important;
         width: 50% !important;
@@ -226,15 +225,6 @@ footer {
         padding: 1rem !important;
         margin-left: 12% !important;
         width: 79% !important;
-    }
-
-    .nav-div {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        align-items: center !important;
-        justify-content: center !important;
-        margin-left: 0.5rem !important;
     }
 
     .create,
@@ -326,13 +316,14 @@ footer {
     /* left: 5rem !important; */
 
 }
+.list-card{
+
+    margin: 0;
+    padding: 0;
+}
 }
 
 @media screen and (max-width:576px) {
-    .listing-card {
-        margin: 0 1.5rem 1rem 1.5rem;
-    }
-
     .tax {
         width: 80%;
 
