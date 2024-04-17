@@ -275,7 +275,8 @@ footer {
     display: none !important;
 }
 .revs{
-    margin-left : 4rem !important ;
+    margin-left : 0 !important ;
+    width: 70% !important;
 }
 .revc{
     margin-top: 0 !important;
@@ -289,14 +290,12 @@ footer {
 .card-t{
     margin-bottom: 0.5rem !important;
 }
-/* .stars{
-    margin-bottom: 0 !important;
-} */
 .map-show{
-    margin-left: 4rem !important;
+    margin-left: 0.5rem !important;
+    width: 95% !important;
 }
 #map{
-    width: 246px;
+    width: 100% !important;
 }
 .btns{
     margin-bottom: 4rem;
@@ -320,6 +319,13 @@ footer {
 
     margin: 0;
     padding: 0;
+}
+.text-box{
+    width: 93vw !important;
+}
+.line{
+    width: 93vw !important;
+    opacity: 0.2;
 }
 }
 
