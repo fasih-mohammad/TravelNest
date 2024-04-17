@@ -305,11 +305,11 @@ footer {
     right: 5rem;
     width: 17% !important;
     margin-left: 0.5rem !important;
-    left: 0 !important;
+    left: 0.6rem !important;
 }
 .show-del{
     position: absolute !important;
-    right: 12rem;
+    right: 11.5rem;
     /* width: 16% !important; */
     /* margin-left: 5rem !important; */
     /* left: 5rem !important; */
