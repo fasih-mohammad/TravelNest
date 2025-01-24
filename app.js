@@ -22,6 +22,8 @@ const User = require('./models/user.js');
 const listings = require('./Routes/listing.js');//router
 const reviews = require('./Routes/review.js');//router
 const user = require('./Routes/user.js');//router
+const bookings = require('./Routes/booking.js');
+
 
 const Fuse = require('fuse.js');
 const Listing = require("./models/listing.js");
@@ -97,6 +99,8 @@ app.use((req,res,next)=>{
 app.use("/listings",listings);
 app.use("/listings/:id/reviews",reviews);
 app.use("/",user);
+
+app.use("/listings", bookings);
 
 app.get('/results',async (req,res)=>{
   const list = await Listing.find();

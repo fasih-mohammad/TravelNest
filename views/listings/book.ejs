@@ -1,0 +1,48 @@
+<% layout("/layouts/boilerplate") %>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h1 class="card-title text-center mb-0">Book <%= listing.title %></h1>
+                </div>
+                <div class="card-body">
+                    <form action="/listings/<%= listing._id %>/book" method="POST">
+                        <!-- Check-In Date -->
+                        <div class="mb-4">
+                            <label for="checkInDate" class="form-label fw-bold">Check-In Date</label>
+                            <input
+                                type="date"
+                                id="checkInDate"
+                                name="checkInDate"
+                                class="form-control form-control-lg"
+                                required
+                            />
+                            <div class="form-text">Select your arrival date.</div>
+                        </div>
+
+                        <!-- Check-Out Date -->
+                        <div class="mb-4">
+                            <label for="checkOutDate" class="form-label fw-bold">Check-Out Date</label>
+                            <input
+                                type="date"
+                                id="checkOutDate"
+                                name="checkOutDate"
+                                class="form-control form-control-lg"
+                                required
+                            />
+                            <div class="form-text">Select your departure date.</div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                Confirm Booking
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

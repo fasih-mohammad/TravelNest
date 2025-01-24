@@ -62,6 +62,11 @@
             <a class="nav-link create" href="/listings/new">Airbnb your Home</a>
             <a class="nav-link log-out" href="/logout">Logout</a>
             <% } %>
+      <% if(currUser) { %>
+    <li class="nav-item">
+        <a class="nav-link" href="/profile">Profile</a>
+    </li>
+<% } %>
     </div>
     <!-- </div> -->
   </div>

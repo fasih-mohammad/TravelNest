@@ -1,6 +1,6 @@
 <% layout("/layouts/boilerplate") %>
     <script>
-        const coordinates = <%- JSON.stringify(listing.geometry.coordinates) %>;
+        const coordinates =  JSON.stringify(listing.geometry.coordinates) ;
     </script>
     <body>
         <div class="row mt-2 ">
@@ -33,6 +33,12 @@
                 </div>
             </div>
         </div>
+        <% if (currUser && !currUser._id.equals(listing.owner._id)) { %>
+            <div class="text-center">
+                <hr class="line">
+                <a href="/listings/<%= listing._id %>/book" class="btn btn-outline-dark">Book Now</a>
+            </div>
+        <% } %>
         <% if(currUser && currUser._id.equals(listing.owner._id) ) {%>
             <div class="btns">
                 <a href="/listings/<%= listing._id %>/edit" class="btn col-1 offset-3 mb-3 show-edit">Edit</a>

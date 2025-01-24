@@ -6,7 +6,8 @@ const userSchema = new Schema({
     email: {
         type:String,
         required:true
-    }
+    },
+    bookings: [{ type: Schema.Types.ObjectId, ref: "Booking" }]
 })
 userSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model("User",userSchema);
