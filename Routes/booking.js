@@ -3,7 +3,6 @@ const router = express.Router();
 const WrapAsync = require("../utils/WrapAsync.js");
 const { isLoggedIn } = require("../middleware.js");
 const { allBooking, cancelBooking, newBooking, bookingForm } = require("../controllers/booking.js") ;
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 router.get(
     "/:id/book",
