@@ -99,18 +99,12 @@ app.use("/listings/:id/reviews",reviews);
 app.use("/",user);
 
 app.get('/results',async (req,res)=>{
-  // console.log(req.query);
-  // 
   const list = await Listing.find();
-const fuse = new Fuse(list, options);
-let resultsArr = fuse.search(req.query.search);
-let results = resultsArr;
-// if (results.length < 1) {
-//   results = "Your search did not return any matches.";
-// }
-res.render("listings/results.ejs" ,{results});
-// console.log(results);
-// res.redirect("/listings");
+  const fuse = new Fuse(list, options);
+  let resultsArr = fuse.search(req.query.search);
+  let results = resultsArr;
+  res.render("listings/results.ejs" ,{results});
+
 });
 
 app.all("*", (req, res, next) => {
