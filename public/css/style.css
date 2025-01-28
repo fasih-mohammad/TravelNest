@@ -195,7 +195,7 @@ footer {
         height: 2rem;
         /* padding: 0.5rem 2.7rem 0.5rem 2.7rem; */
         position: absolute;
-        left: 7rem;
+        left: 6.66rem;
         bottom: 1.45rem;
     }
 
@@ -211,7 +211,7 @@ footer {
         justify-content: center;
         border-radius: 50%;
         position: absolute;
-        left: 17rem;
+        left: 16rem;
         bottom: 1.45rem;
     }
     .logH {
@@ -228,7 +228,7 @@ footer {
     }
 
     .create,
-    .log-out {
+    .log-out,.profile {
         display: none !important;
     }
    .short{

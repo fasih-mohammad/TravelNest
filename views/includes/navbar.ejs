@@ -64,6 +64,7 @@
       padding: 0.3rem 0.8rem;
     }
   }
+
 </style>
 
 <nav class="navbar navbar-expand-md  bg-body-light border-bottom sticky-top">
@@ -75,7 +76,6 @@
     <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> -->
     <div class="navbar-nav">
       <a class="nav-link explore" href="/listings">Explore</a>
-
     </div>
     <div class="navbar-nav ms-auto">
       <form class="d-flex" role="search" method="get" action="/results">
@@ -111,10 +111,8 @@
             </ul>
             <a class="nav-link create" href="/listings/new">Airbnb your Home</a>
             <a class="nav-link log-out" href="/logout">Logout</a>
+            <a class="nav-link profile" href="/profile">Profile</a>
             <% } %>
-      <% if(currUser) { %>
-    
-<% } %>
     </div>
     <!-- </div> -->
   </div>
