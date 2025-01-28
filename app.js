@@ -28,6 +28,13 @@ const bookings = require('./Routes/booking.js');
 const Fuse = require('fuse.js');
 const Listing = require("./models/listing.js");
 
+const Razorpay = require("razorpay");
+
+const razorpay = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+});
+
 main()
   .then(() => {
     console.log("connected to DB");
@@ -49,6 +56,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.json());
 
 const store = mongoStore.create({
   mongoUrl: db_url,
@@ -92,7 +100,7 @@ passport.deserializeUser(User.deserializeUser()) ;
 app.use((req,res,next)=>{
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
-  res.locals.currUser = req.user;
+  res.locals.currUser = req.user || null;
   next();
 })
 
@@ -101,6 +109,7 @@ app.use("/listings/:id/reviews",reviews);
 app.use("/",user);
 
 app.use("/listings", bookings);
+
 
 app.get('/results',async (req,res)=>{
   const list = await Listing.find();

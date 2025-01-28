@@ -1,127 +1,78 @@
 <% layout("/layouts/boilerplate") %>
 
     <style>
-        #filters {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            /* gap: 1rem; */
-            margin-bottom: 0.5rem;
-
-        }
-
-        .filter {
-            display: inline-block;
-            text-align: center;
-            /* margin-right: 2rem; */
-            margin: 2rem 0 0 2rem;
-            /* margin-top: 2rem; */
-            opacity: 0.7;
-        }
-        .last{
-            margin-right: 1rem;
-        }
-        /* .first{ */
-            /* margin-left: 1rem; */
-        /* } */
-
-        .filter:hover {
-            opacity: 1;
-            cursor: pointer;
-        }
-
-        .filter p {
-            font-size: 0.8rem;
-        }
-
-        .tax-info {
-            display: none;
-        }
-
-        .tax {
-            border: 1px solid rgb(227, 209, 209);
-            /* height: 3rem; */
-            width: 18rem;
-            margin: 1rem auto;
-            border-radius: 1rem;
-            padding: 1rem;
-        }
-
-        .tax-box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .switch {
-            font-size: 1.2rem;
-        }
-
+        
         @media screen and (max-width:991px) {
-            .scrolling-wrapper {
-                display: flex;
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                .filter {
-                    flex: 0 0 auto;
-                }
-            }
-            #filters{
-                padding-left: 1rem;
-                height: 4rem;
-                overflow-y: hidden;
-            }
+            .listing-link {
+            flex: 1 1 calc(50% - 1rem); /* 2 cards per row for tablets */
+            max-width: calc(50% - 1rem);
         }
+
+        .card-img-top {
+            height: 12rem; /* Adjust image height for smaller screens */
+        }
+
+        .card-text {
+            font-size: 0.9rem;
+        }
+        }
+        @media screen and (max-width: 576px) {
+        .listing-link {
+            flex: 1 1 100%; /* 1 card per row for small devices */
+            max-width: 100%;
+        }
+
+        .card-img-top {
+            height: 10rem;
+        }
+
+        .card-body {
+            padding: 0.75rem;
+        }
+
+        .card-text {
+            font-size: 0.85rem;
+        }
+    }
 
         @media screen and (max-width:400) {
             .list-card{
                 padding-right: 0 !important;
                 padding-left: 0 !important;
             }
-            
+
+        .listing-card {
+            border-radius: 0.25rem;
+        }
+
+        .card-img-top {
+            height: 8rem;
+        }
+
+        .card-text {
+            font-size: 0.8rem;
+        }
         }
     </style>
-
-    <body>
-        
+    <body>  
 <hr class="line">
-
         <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 list-card">
             <% for(let listing of allListings){ %>
                 <a href="/listings/<%= listing._id %>" class="listing-link">
                     <div class="card col listing-card">
                         <img src="<%= listing.image.url %>" class="card-img-top" alt="Listing Image"
                             style="height: 20rem;">
-
                         <div class="card-img-overlay"></div>
-
                         <div class="card-body">
                             <p class="card-text">
                                 <b>
                                     <%= listing.title %>
                                 </b> <br>
                                 Price: &#8377;<%= listing.price.toLocaleString("en-IN") %> / Night
-                                    <i class="tax-info"> &nbsp; &nbsp;+18% GST</i>
                             </p>
                         </div>
                     </div>
                 </a>
                 <%}%>
         </div>
-
-        <script>
-            let taxSwitch = document.getElementById('flexSwitchCheckDefault');
-            taxSwitch.addEventListener("click", () => {
-                let taxInfo = document.getElementsByClassName('tax-info');
-                for (info of taxInfo) {
-                    if (info.style.display != 'inline') {
-                        info.style.display = 'inline';
-                    }
-                    else {
-                        info.style.display = 'none';
-                    }
-                }
-            });
-        </script>
     </body>

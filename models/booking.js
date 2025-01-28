@@ -7,7 +7,14 @@ const bookingSchema = new Schema({
     checkInDate: { type: Date, required: true },
     checkOutDate: { type: Date, required: true },
     totalPrice: { type: Number, required: true },
-    status: { type: String, default: "pending" } // e.g., pending, confirmed, cancelled
+    paymentId: { type: String }, // Razorpay payment ID
+    status: { type: String, default: "pending" }, // e.g., pending, confirmed, cancelled
+}, {
+    timestamps: true, // Automatically adds createdAt and updatedAt fields
 });
+
+// Optionally, you can add indexes to optimize queries
+bookingSchema.index({ listingId: 1 });
+bookingSchema.index({ userId: 1 });
 
 module.exports = mongoose.model("Booking", bookingSchema);

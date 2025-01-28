@@ -1,48 +1,139 @@
 <% layout("/layouts/boilerplate") %>
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white">
-                    <h1 class="card-title text-center mb-0">Book <%= listing.title %></h1>
-                </div>
-                <div class="card-body">
-                    <form action="/listings/<%= listing._id %>/book" method="POST">
-                        <!-- Check-In Date -->
-                        <div class="mb-4">
-                            <label for="checkInDate" class="form-label fw-bold">Check-In Date</label>
-                            <input
-                                type="date"
-                                id="checkInDate"
-                                name="checkInDate"
-                                class="form-control form-control-lg"
-                                required
-                            />
-                            <div class="form-text">Select your arrival date.</div>
-                        </div>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="card-title text-center mb-0">Book <%= listing.title %>
+                        </h1>
+                    </div>
+                    <div class="card-body">
+                        <form id="booking-form">
+                            <!-- Check-In Date -->
+                            <div class="mb-4">
+                                <label for="checkInDate" class="form-label fw-bold">Check-In Date</label>
+                                <input type="date" id="checkInDate" name="checkInDate"
+                                    class="form-control form-control-lg" required />
+                                <div class="form-text">Select your arrival date.</div>
+                            </div>
 
-                        <!-- Check-Out Date -->
-                        <div class="mb-4">
-                            <label for="checkOutDate" class="form-label fw-bold">Check-Out Date</label>
-                            <input
-                                type="date"
-                                id="checkOutDate"
-                                name="checkOutDate"
-                                class="form-control form-control-lg"
-                                required
-                            />
-                            <div class="form-text">Select your departure date.</div>
-                        </div>
+                            <!-- Check-Out Date -->
+                            <div class="mb-4">
+                                <label for="checkOutDate" class="form-label fw-bold">Check-Out Date</label>
+                                <input type="date" id="checkOutDate" name="checkOutDate"
+                                    class="form-control form-control-lg" required />
+                                <div class="form-text">Select your departure date.</div>
+                            </div>
 
-                        <!-- Submit Button -->
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-lg">
-                                Confirm Booking
-                            </button>
-                        </div>
-                    </form>
+                            <!-- Submit Button -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    Confirm Booking
+                                </button>
+                            </div>
+                        </form>
+                        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+                        <script>
+                            const form = document.getElementById("booking-form");
+                            form.addEventListener("submit", async (e) => {
+                                e.preventDefault();
+
+                                // Get form inputs
+                                const checkInDate = document.getElementById("checkInDate").value;
+                                const checkOutDate = document.getElementById("checkOutDate").value;
+
+                                try {
+                                    // Create Razorpay Order
+                                    const response = await fetch(`/listings/<%= listing._id %>/book`, {
+                                        method: "POST",
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                        },
+                                        body: JSON.stringify({
+                                            listingId: "<%= listing._id %>",
+                                            checkInDate,
+                                            checkOutDate,
+                                        }),
+                                    });
+
+                                    // Check response status
+                                    if (!response.ok) {
+                                        const error = await response.json();
+                                        alert(`Error: ${error.error}`);
+                                        return;
+                                    }
+
+                                    // Extract Razorpay order details and total price
+                                    const { order, totalPrice } = await response.json();
+
+                                    // Validate order data
+                                    if (!order?.amount || !order?.currency || !order?.id) {
+                                        alert("Invalid order data received from the server.");
+                                        return;
+                                    }
+
+                                    // Configure Razorpay Checkout
+                                    const options = {
+                                        key: "<%= process.env.RAZORPAY_KEY_ID %>", // Razorpay key from environment variable
+                                        amount: order.amount,
+                                        currency: order.currency,
+                                        order_id: order.id,
+                                        name: "TravelNest",
+                                        description: "Booking Payment",
+                                        handler: async function (response) {
+                                            try {
+                                                console.log("Razorpay payment response:", response);
+                                                if (!response.razorpay_payment_id) {
+                                                    alert("Payment failed or payment ID is missing");
+                                                    return;
+                                                }
+                                                const successResponse = await fetch("/listings/bookings/success", {
+                                                    method: "POST",
+                                                    headers: {
+                                                        "Content-Type": "application/json",
+                                                    },
+                                                    body: JSON.stringify({
+                                                        listingId: "<%= listing._id %>",
+                                                        checkInDate,
+                                                        checkOutDate,
+                                                        razorpayPaymentId: response.razorpay_payment_id, // Send payment IDs
+                                                        totalPrice: totalPrice, // Send totalPrice
+                                                    }),
+                                                });
+
+                                                const jsonResult = await successResponse.json();
+
+                                                if (successResponse.ok) {
+                                                    alert("Payment successful! Booking confirmed.");
+                                                    window.location.href = "/profile"; // Redirect to profile or success page
+                                                } else {
+                                                    alert(`Error: ${jsonResult.error}`);
+                                                }
+                                            } catch (err) {
+                                                console.error("Error confirming booking:", err);
+                                                alert("An error occurred while confirming your booking.");
+                                            }
+                                        },
+                                        prefill: {
+                                            name: "<%= currUser.username %>",
+                                            email: "<%= currUser.email %>",
+                                        },
+                                        theme: {
+                                            color: "#3399cc",
+                                        },
+                                    };
+
+                                    // Open Razorpay Checkout
+                                    const razorpay = new Razorpay(options);
+                                    razorpay.open();
+                                } catch (error) {
+                                    console.error("Error creating Razorpay order:", error);
+                                    alert("An unexpected error occurred while processing your request.");
+                                }
+                            });
+                        </script>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
